@@ -1,0 +1,47 @@
+.SearchField
+{
+    background-color: $background;
+    padding: .2em .4em;
+    color: $body_color;
+    width: 100%;
+    display: flex;
+}
+.SearchField__chosen-terms
+{
+    display: block;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+
+    li
+    {
+        display: inline-block;
+    }
+}
+.SearchField__user-text
+{
+    &,input
+    {
+        border: none !important;
+        outline: none !important;
+        background: transparent;
+    }
+}
+.SearchField__share-btn
+{
+    @include no-button-style;
+    @include animated;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    .fa
+    {
+        color: $body_color;
+    }
+
+    &:hover .fa
+    {
+        color: $ingredient;
+    }
+}

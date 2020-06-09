@@ -1,0 +1,56 @@
+.TermPill
+{
+    background-color: darken($background,10%);
+    color: $body_color;
+    padding: 2px 6px;
+    padding-right: 0;
+    border-radius: 6px;
+    font-size: .85em;
+    font-weight: 600;
+    //letter-spacing: .5px;
+
+    &:not(:last-child)
+    {
+        margin-right: .4em;
+    }
+}
+.TermPill--wprm_ingredient
+{
+    background-color: $ingredient;
+    color: $background_light;
+}
+.TermPill--wprm_cuisine
+{
+    background-color: $cuisine;
+    color: $background_light;
+}
+.TermPill--wprm_course
+{
+    background-color: $course;
+    color: $background_light;
+}
+.TermPill--category
+{
+    background-color: $category;
+    color: $background_light;
+}
+.TermPill__close-btn
+{
+    @include no-button-style;
+    color: $background_light;
+    font-weight: black;
+    border: none !important;
+    outline: none !important;
+    cursor: pointer;
+    opacity: .8;
+    @include animated;
+
+    &:hover
+    {
+        opacity: 1;
+    }
+}
+.TermPill--user-text .TermPill__close-btn
+{
+    color: $body_color;
+}

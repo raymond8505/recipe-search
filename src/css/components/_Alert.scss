@@ -1,0 +1,25 @@
+.Alert
+{
+    border: 2px solid transparent;
+    padding: 1em;
+    font-weight: bold;
+    display: inline-block;
+}
+.Alert--error
+{
+    border-color: $ingredient;
+    color: $ingredient;
+    background: rgba($ingredient,.1);
+}
+.Alert--info
+{
+    border-color: darkgoldenrod;
+    color: darkgoldenrod;
+    background-color: rgba(darkgoldenrod,.1);
+}
+.Alert--success
+{
+    border-color: green;
+    color: green;
+    background-color: rgba(green,.1);
+}

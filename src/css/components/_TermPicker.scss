@@ -1,0 +1,107 @@
+.TermPicker
+{
+    margin-bottom: 1.5em;
+    font-size: .9rem;
+}
+.TermPicker__terms
+{
+    height: calc(1.2em * 10);
+    @include styled-scroll-bar;
+    overflow: auto;
+    background: rgba($background_light,.5);
+    padding: .2em;
+    margin: 0;
+    border: 1px solid darken($background,3%);
+}
+.TermPicker__term
+{
+    button
+    {
+        @include no-button-style;
+        display: block;
+        width: 100%;
+        @include animated;
+        padding: .4em 1em;
+        display: block;
+        margin: 0;
+        line-height: 1;
+        text-align: left;
+        font-size: inherit;
+    }
+
+    &:hover button,
+    &.TermPicker__term--selected button
+    {
+        background-color: $accent;
+        color: $background_light;
+    }
+}
+.TermPicker__title
+{
+    font-size: .95em;
+    margin-bottom: .2em;
+}
+
+.TermPicker--wprm_ingredient
+{
+    .TermPicker__term:hover button,
+    .TermPicker__term--selected button
+    {
+        background-color: $ingredient;
+    }
+
+    .TermPicker__title
+    {
+        color: $ingredient;
+    }
+}
+
+.TermPicker--wprm_cuisine
+{
+    .TermPicker__term:hover button,
+    .TermPicker__term--selected button
+    {
+        background-color: $cuisine;
+    }
+
+    .TermPicker__title
+    {
+        color: $cuisine;
+    }
+}
+
+.TermPicker--wprm_course
+{
+    .TermPicker__term:hover button,
+    .TermPicker__term--selected button
+    {
+        background-color: $course;
+    }
+
+    .TermPicker__title
+    {
+        color: $course;
+    }
+}
+
+.TermPicker--category
+{
+    .TermPicker__term:hover button,
+    .TermPicker__term--selected button
+    {
+        background-color: $category;
+    }
+
+    .TermPicker__title
+    {
+        color: $category;
+    }
+}
+.TermPicker__filter-field
+{
+    width: 100%;
+    padding: .2em .4em;
+    margin-bottom: .2em;
+    border: 1px solid rgba($body_color,.3);
+    border-radius: 2px;
+}

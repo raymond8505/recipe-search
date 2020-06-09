@@ -1,0 +1,68 @@
+.App__header
+{
+    background: $body_color;
+    color: $background_light;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    width: 100%;
+    flex-grow: 0;
+    grid-column-start: span 2;
+
+    a
+    {
+        color: $background_light;
+        text-decoration: none;
+    }
+
+    .fa
+    {
+        color: rgba($background_light,.75);
+    }
+}
+.App__title
+{
+    margin: 0; 
+}
+.App
+{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows:  auto 1fr;
+    width: 100vw;
+    height: 100vh;
+}
+.App > .Loader
+{
+    width: 100vw;
+    height: 100vh;
+}
+.App__header-links
+{
+    .menu a
+    {
+        border-bottom: 2px solid $background_light;
+    }
+
+    ul,li
+    {
+        display: inline-block;
+    }
+
+    ul
+    {
+        margin: 0;
+        padding: 0;
+    }
+
+    li
+    {
+        margin-left: .5em;
+    }
+}
+.App__search-field
+{
+    flex-grow: 1;
+    margin: 0 1vw;
+}

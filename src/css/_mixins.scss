@@ -1,0 +1,14 @@
+@mixin styled-scroll-bar ($bar_color : rgba($body_color,.5) )
+{
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background: $bar_color;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background: transparent; 
+    }
+}

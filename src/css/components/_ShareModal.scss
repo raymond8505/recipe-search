@@ -1,0 +1,58 @@
+.ShareModal__close-share-modal
+{
+    float: right;
+    @include no-button-style;
+}
+.ShareModal__url-field
+{
+    width: 100%;
+}
+.ShareModal__social-buttons
+{
+    display: flex;
+    justify-content: center;
+    margin: 0 0 .5em;
+    padding: 0;
+    font-size: 2.5em;
+
+    a
+    {
+        border: none !important;
+    }
+    
+    li
+    {
+        padding: 0;
+        margin: 0 .5em;
+        display: block;
+    }
+
+    .fa-facebook-official
+    {
+        color: $facebook_blue !important;
+    }
+
+    .fa-reddit
+    {
+        color: $reddit_orange !important;
+    }
+
+    .fa-pinterest
+    {
+        color: $pinterest_red !important;
+    }
+
+    .fa-envelope-o
+    {
+        color: $body_color !important;
+    }
+
+    .fa-twitter
+    {
+        color: $twitter_blue !important;
+    }
+}
+.ShareModal__title
+{
+    font-size: 1em;
+}
