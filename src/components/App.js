@@ -18,7 +18,8 @@ class App extends React.Component
       terms : {},
       chosenTerms : [],
       results : [],
-      resultsLoading : false
+      resultsLoading : false,
+      resultsCount : 0
     };
   }
 
@@ -194,10 +195,13 @@ class App extends React.Component
 
   handleSearchResults = (data) => {
 
+    data = JSON.parse(data);
+
     this.setState(
       {
         resultsLoading : false,
-        results : JSON.parse(data)
+        results : data,
+        resultsCount : data.length
       });
   }
 
@@ -253,22 +257,19 @@ class App extends React.Component
 
   clearTerms = (type) => {
     
-    if(type === undefined)
-    {
-      this.setState({
-        chosenTerms : []
-      });
-    }
-    else
+    let chosenTerms = [];
+
+    if(type !== undefined)
     {
       let tax = type === 'user-text' ? 'user-text' : this.getTaxSlug(type);
 
-      let chosenTerms = this.state.chosenTerms.filter(term => {
+      chosenTerms = this.state.chosenTerms.filter(term => {
         return term.taxonomy !== tax;
       });
-
-      this.setState({chosenTerms});
+      
     }
+
+    this.setState({chosenTerms},this.updateResults);
   }
 
   getTaxSlug(termsTax)
@@ -297,6 +298,7 @@ class App extends React.Component
               addTerm={this.addTerm}
               removeTerm={this.removeTerm}
               clearTerms={this.clearTerms}
+              resultsCount={this.state.resultsCount}
             />
           </div>
           <div className="App__header-links">
@@ -329,6 +331,7 @@ class App extends React.Component
         <Results 
           posts={this.state.results}
           loading={this.state.resultsLoading}
+          
         />
         
 

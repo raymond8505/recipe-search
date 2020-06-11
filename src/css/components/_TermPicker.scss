@@ -40,6 +40,8 @@
 {
     font-size: .95em;
     margin-bottom: .2em;
+    display: flex;
+    justify-content: space-between;
 }
 
 .TermPicker--wprm_ingredient
@@ -104,4 +106,19 @@
     margin-bottom: .2em;
     border: 1px solid rgba($body_color,.3);
     border-radius: 2px;
+}
+.TermPicker--closed
+{
+    .TermPicker__filter-field,
+    .TermPicker__terms
+    {
+        display: none;
+    }
+}
+.TermPicker__toggle-btn
+{
+    @include no-button-style;
+    border: none !important;
+    outline: none !important;
+    color: rgba($body_color,.5);
 }

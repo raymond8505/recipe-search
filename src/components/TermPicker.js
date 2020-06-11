@@ -8,7 +8,8 @@ class TermPicker extends React.Component
         super(props);
 
         this.state = {
-            filter : ''
+            filter : '',
+            open : true
         }
     }
 
@@ -40,6 +41,11 @@ class TermPicker extends React.Component
         this.setState({filter : e.target.value});
     }
 
+    toggleOpen = (e) => {
+
+        this.setState({open : !this.state.open});
+    }
+
     renderTerms = () => {
 
         if(this.props.taxonomy === undefined || this.props.taxonomy === undefined) return null;
@@ -66,9 +72,16 @@ class TermPicker extends React.Component
     {
         //console.log(this.props.taxonomy);
 
-        return (<div className={`TermPicker${this.props.taxonomy.terms.length > 0 ? ' TermPicker--' + this.props.taxonomy.terms[0].taxonomy : ''}`}>
+        return (<div className={`TermPicker` +
+                                    `${this.props.taxonomy.terms.length > 0 ? ' TermPicker--' + this.props.taxonomy.terms[0].taxonomy : ''}` + 
+                                    `${this.state.open ? '' : ' TermPicker--closed'}`
+                                }>
             <h3 className="TermPicker__title">
-                {this.props.taxonomy.title}
+                <span className="TermPicker__title-content">{this.props.taxonomy.title}</span>
+                <button className="TermPicker__toggle-btn" type="button" onClick={this.toggleOpen}>
+                    <span className="sr-only">toggle visibility of this term picker</span>
+                    <i className={`fa fa-chevron-${this.state.open ? 'up' : 'down'}`}></i>
+                </button>
             </h3>
             <input type="text" 
                 ref={this.filterField} 

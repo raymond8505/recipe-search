@@ -1253,17 +1253,21 @@ dialog {
   display: flex; }
 
 .SearchField__chosen-terms {
-  display: block;
+  display: flex;
   padding: 0;
   margin: 0;
   flex-grow: 1; }
   .SearchField__chosen-terms li {
-    display: inline-block; }
+    display: block; }
 
-.SearchField__user-text, .SearchField__user-text input {
-  border: none !important;
-  outline: none !important;
-  background: transparent; }
+.SearchField__user-text {
+  flex-grow: 1; }
+  .SearchField__user-text, .SearchField__user-text input {
+    border: none !important;
+    outline: none !important;
+    background: transparent; }
+  .SearchField__user-text input {
+    width: 100%; }
 
 .SearchField__share-btn {
   background: transparent;
@@ -1278,6 +1282,15 @@ dialog {
     color: #111; }
   .SearchField__share-btn:hover .fa {
     color: #BF0404; }
+
+.SearchField__results-count {
+  font-weight: 900; }
+
+.SearchField__results-label {
+  font-size: .75em;
+  vertical-align: middle;
+  line-height: 2em;
+  overflow: hidden; }
 
 .Filters {
   background: #eee;
@@ -1361,7 +1374,9 @@ dialog {
 
 .TermPicker__title {
   font-size: .95em;
-  margin-bottom: .2em; }
+  margin-bottom: .2em;
+  display: flex;
+  justify-content: space-between; }
 
 .TermPicker--wprm_ingredient .TermPicker__term:hover button,
 .TermPicker--wprm_ingredient .TermPicker__term--selected button {
@@ -1397,6 +1412,19 @@ dialog {
   margin-bottom: .2em;
   border: 1px solid rgba(17, 17, 17, 0.3);
   border-radius: 2px; }
+
+.TermPicker--closed .TermPicker__filter-field,
+.TermPicker--closed .TermPicker__terms {
+  display: none; }
+
+.TermPicker__toggle-btn {
+  background: transparent;
+  border: none;
+  font-size: 1em;
+  border-radius: 0;
+  border: none !important;
+  outline: none !important;
+  color: rgba(17, 17, 17, 0.5); }
 
 .TermPill {
   background-color: #d5d5d5;

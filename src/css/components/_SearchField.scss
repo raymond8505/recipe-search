@@ -8,23 +8,30 @@
 }
 .SearchField__chosen-terms
 {
-    display: block;
+    display: flex;
     padding: 0;
     margin: 0;
     flex-grow: 1;
 
     li
     {
-        display: inline-block;
+        display: block;
     }
 }
 .SearchField__user-text
 {
+    flex-grow: 1;
+    
     &,input
     {
         border: none !important;
         outline: none !important;
         background: transparent;
+    }
+
+    input
+    {
+        width: 100%;
     }
 }
 .SearchField__share-btn
@@ -44,4 +51,15 @@
     {
         color: $ingredient;
     }
+}
+.SearchField__results-count
+{
+    font-weight: 900;
+}
+.SearchField__results-label
+{
+    font-size: .75em;
+    vertical-align: middle;
+    line-height: 2em;
+    overflow: hidden;
 }

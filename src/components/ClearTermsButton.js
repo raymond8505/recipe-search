@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {elementIsIn} from '../helpers';
 
 class ClearTermsButton extends React.Component
 {
@@ -17,10 +18,13 @@ class ClearTermsButton extends React.Component
         terms : PropTypes.object.isRequired
     }
 
+    taxDropDown = React.createRef();
+    taxToggleBtn = React.createRef();
+
     renderTaxDropDown = () => {
         //console.log(this.props.terms);
 
-        return (<ul className={`ClearTermsButton__tax-dropdown${this.state.taxDropDownOpen ? ' ClearTermsButton__tax-dropdown--open' : ''}`}>
+        return (<ul ref={this.taxDropDown} className={`ClearTermsButton__tax-dropdown${this.state.taxDropDownOpen ? ' ClearTermsButton__tax-dropdown--open' : ''}`}>
             {this.renderTaxDropDownItems()}
             <li className={`ClearTermsButton__tax-item ClearTermsButton__tax-item--user-text`}>
             <button 
@@ -56,20 +60,38 @@ class ClearTermsButton extends React.Component
         this.setState({taxDropDownOpen : !this.state.taxDropDownOpen});
     }
 
+    onWindowClick = (e) => {
+        
+        
+
+        if(e.target !== this.taxToggleBtn.current && this.state.taxDropDownOpen && !elementIsIn(e.target,this.taxDropDown.current))
+        {
+            this.setState({taxDropDownOpen : false});
+        }
+    }
+
+    componentDidMount()
+    {
+        console.log('mount');
+        window.addEventListener('mouseup',this.onWindowClick);
+    }
+
     render()
     {
         return (<div className="ClearTermsButton">
-            <button 
+            <button
+                ref={this.taxToggleBtn} 
                 type="button" 
                 className="ClearTermsButton__clear-btn"
-                onClick={(e)=>{this.props.clearTerms();}}>
+                onMouseDown={(e)=>{this.props.clearTerms();}}
+                title="Clear All Fillters">
                 <span className="sr-only">Clear Terms</span>
                 <i className="fa fa-ban"></i>
             </button>
             <button 
                 type="button" 
                 className="ClearTermsButton__types-btn" 
-                title="Choose a type to clear"
+                title="Choose a filter type to clear"
                 onClick={this.handleTypesToggleClick}>
                 <span className="sr-only">Choose a type to clear</span>
                 <i className="fa fa-caret-down"></i>

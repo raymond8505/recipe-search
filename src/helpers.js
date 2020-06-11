@@ -24,6 +24,18 @@ export function objectToURLParams(obj)
     }).join('&');
 }
 
+export function elementIsIn(el,parent)
+{
+    if(el === document.body) return false;
+
+    if(el.parentNode !== parent)
+    {
+        return elementIsIn(el.parentNode,parent);
+    }
+
+    return true;
+}
+
 export function getTermById(id,termsObj)
 {
     let toRet = undefined;

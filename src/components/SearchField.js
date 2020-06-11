@@ -20,7 +20,12 @@ class SearchField extends React.Component
         chosenTerms : PropTypes.array.isRequired,
         addTerm : PropTypes.func.isRequired,
         removeTerm : PropTypes.func.isRequired,
-        clearTerms : PropTypes.func.isRequired
+        clearTerms : PropTypes.func.isRequired,
+        resultsCount : PropTypes.number
+    }
+
+    static defaultProps = {
+        resultsCount : 0
     }
 
     userInput = React.createRef();
@@ -52,6 +57,14 @@ class SearchField extends React.Component
         this.setState({shareModalOpen : false});
     }
 
+    displayResults = () => {
+
+        let count = this.props.resultsCount;
+        let s = count > 1 ? 's' : '';
+
+        return count === 0 ? null : (<div className="SearchField__results-label"><span className="SearchField__results-count">{count}</span> recipe{s} found</div>);
+    }
+
     render()
     {
         //console.log(this.props.chosenTerms);
@@ -74,7 +87,9 @@ class SearchField extends React.Component
                     <input type="text" ref={this.userInput} placeholder="Enter Search" onKeyUp={this.handleKeyUp} />
                 </li>
             </ul>
-
+            
+            {this.displayResults()}
+            
             <ClearTermsButton terms={this.props.allTerms} clearTerms={this.props.clearTerms} />
         </div>);
     }
