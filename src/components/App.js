@@ -66,7 +66,7 @@ class App extends React.Component
           }
         });
 
-        console.log(chosenTerms);
+        //console.log(chosenTerms);
 
         _this.setState({chosenTerms},() => {
             if(this.state.chosenTerms.length > 0)
@@ -153,7 +153,14 @@ class App extends React.Component
 
     if(this.termIsChosen(term))
     {
-      this.removeTerm(term);
+      if(this.termIsExcluded(term))
+      {
+        this.removeTerm(term);
+      }
+      else
+      {
+        this.excludeTerm(term,this.updateResults);
+      }
     }
     else
     {
@@ -163,9 +170,58 @@ class App extends React.Component
     }
   }
 
+  termIsExcluded = (term) => {
+
+    let chosenTerms = this.state.chosenTerms;
+
+    return chosenTerms.find(ct => {
+
+      //console.log(term.term_id === ct.term,ct.excluded);
+      return term.term_id === ct.term_id && ct.excluded;
+    })
+  }
+
+  excludeTerm = (term,cb) =>
+  {
+    return this.setTermExclusion(term,cb,true);
+  }
+
+  includeTerm = (term,cb) =>
+  {
+    return this.setTermExclusion(term,cb,false);
+  }
+
+  toggleTerm = (term) => {
+    
+    return this.setTermExclusion(term,this.updateResults,!term.excluded);
+  }
+
+  setTermExclusion = (term,cb,exclude = true) => {
+
+    let chosenTerms = this.state.chosenTerms;
+
+    chosenTerms.forEach(ct => {
+
+      if(ct.term_id === term.term_id)
+      {
+        ct.excluded = exclude;
+        term.excluded = exclude;
+      }
+    });
+
+    this.setState({chosenTerms},cb);
+  }
+
   removeTerm = (term) => {
 
     let chosenTerms = this.state.chosenTerms.filter(ct => {
+
+      if(ct.term_id === term.term_id)
+      {
+        ct.excluded = false;
+        term.excluded = false;
+      }
+
       return ct.term_id !== term.term_id;
     });
 
@@ -178,13 +234,17 @@ class App extends React.Component
 
     if(this.state.chosenTerms === undefined || this.state.chosenTerms.length === 0) return;
 
-    let toSend = this.compressTerms(this.state.chosenTerms);
+    let termsToSend = this.state.chosenTerms;
 
-    //console.log(toSend);
+    let toSend = this.compressTerms(termsToSend);
 
-    this.setState({resultsLoading : true});
+    console.log(toSend);
 
-    this.searchRecipes(toSend,this.handleSearchResults);
+    this.setState({resultsLoading : true},function(){
+      this.searchRecipes(toSend,this.handleSearchResults);
+    });
+
+    
 
   }
 
@@ -212,6 +272,13 @@ class App extends React.Component
 
     terms.forEach(term => {
 
+      let term_id = term.term_id;
+
+      if(term.excluded)
+      {
+        term_id *= -1;
+      }
+
       if(term.taxonomy === 'user-text')
       {
         if(!searchTerms.includes(term.term_id))
@@ -226,9 +293,9 @@ class App extends React.Component
           taxTerms[term.taxonomy] = [];
         }
 
-        if(!taxTerms[term.taxonomy].includes(term.term_id))
+        if(!taxTerms[term.taxonomy].includes(term_id))
         {
-          taxTerms[term.taxonomy].push(term.term_id);
+          taxTerms[term.taxonomy].push(term_id);
         }
       }
     })
@@ -299,6 +366,7 @@ class App extends React.Component
               removeTerm={this.removeTerm}
               clearTerms={this.clearTerms}
               resultsCount={this.state.resultsCount}
+              toggleTerm={this.toggleTerm}
             />
           </div>
           <div className="App__header-links">

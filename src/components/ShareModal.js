@@ -82,19 +82,19 @@ class ShareModal extends React.Component
 
                         <ul className="ShareModal__social-buttons">
                             <li className="ShareModal__social-button ShareModal__social-button--facebook">
-                                <a href={`https://www.facebook.com/sharer/sharer.php?u=${url}`} target="_blank" rel="noreferrer noopener"><i class="fa fa-facebook-official"></i></a>
+                                <a href={`https://www.facebook.com/sharer/sharer.php?u=${url}`} target="_blank" rel="noreferrer noopener"><i className="fa fa-facebook-official"></i></a>
                             </li>
                             <li className="ShareModal__social-button ShareModal__social-button--twitter">
-                                <a href={`https://twitter.com/intent/tweet?url=${url}`} target="_blank" rel="noreferrer noopener"><i class="fa fa-twitter"></i></a>
+                                <a href={`https://twitter.com/intent/tweet?url=${url}`} target="_blank" rel="noreferrer noopener"><i className="fa fa-twitter"></i></a>
                             </li>
                             <li className="ShareModal__social-button ShareModal__social-button--reddit">
-                                <a href={`https://www.reddit.com/submit?url=${url}&title=look at these recipes`} target="_blank" rel="noreferrer noopener"><i class="fa fa-reddit"></i></a>
+                                <a href={`https://www.reddit.com/submit?url=${url}&title=look at these recipes`} target="_blank" rel="noreferrer noopener"><i className="fa fa-reddit"></i></a>
                             </li>
                             <li className="ShareModal__social-button ShareModal__social-button--pinterest">
-                                <a href={`https://www.pinterest.ca/pin/create/bookmarklet/?&url=${url}&description=look at these recipes`} target="_blank" rel="noreferrer noopener"><i class="fa fa-pinterest"></i></a>
+                                <a href={`https://www.pinterest.ca/pin/create/bookmarklet/?&url=${url}&description=look at these recipes`} target="_blank" rel="noreferrer noopener"><i className="fa fa-pinterest"></i></a>
                             </li>
                             <li className="ShareModal__social-button ShareModal__social-button--email">
-                                <a href={`mailto:?subject=look+at+these+recipes&body=${url}`} target="_blank" rel="noreferrer noopener"><i class="fa fa-envelope-o"></i></a>
+                                <a href={`mailto:?subject=look+at+these+recipes&body=${url}`} target="_blank" rel="noreferrer noopener"><i className="fa fa-envelope-o"></i></a>
                             </li>
                         </ul>
 

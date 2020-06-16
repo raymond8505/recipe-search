@@ -3,6 +3,7 @@
     margin-bottom: 1.5em;
     font-size: .9rem;
 }
+
 .TermPicker__terms
 {
     height: calc(1.2em * 10);
@@ -36,6 +37,11 @@
         color: $background_light;
     }
 }
+.TermPicker__term--excluded
+{
+    opacity: .5;
+}
+
 .TermPicker__title
 {
     font-size: .95em;

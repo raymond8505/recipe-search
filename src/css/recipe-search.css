@@ -1299,7 +1299,7 @@ dialog {
   border-right: 1px solid #d5d5d5;
   overflow: auto;
   height: 100%;
-  min-width: 15vw; }
+  width: 20vw; }
   .Filters::-webkit-scrollbar {
     width: 5px; }
   .Filters::-webkit-scrollbar-thumb {
@@ -1372,6 +1372,9 @@ dialog {
   background-color: #900;
   color: #fff; }
 
+.TermPicker__term--excluded {
+  opacity: .5; }
+
 .TermPicker__title {
   font-size: .95em;
   margin-bottom: .2em;
@@ -1427,6 +1430,7 @@ dialog {
   color: rgba(17, 17, 17, 0.5); }
 
 .TermPill {
+  transition: all 0.2s ease-in-out 0s;
   background-color: #d5d5d5;
   color: #111;
   padding: 2px 6px;
@@ -1436,6 +1440,9 @@ dialog {
   font-weight: 600; }
   .TermPill:not(:last-child) {
     margin-right: .4em; }
+
+.TermPill--excluded {
+  opacity: .55; }
 
 .TermPill--wprm_ingredient {
   background-color: #BF0404;

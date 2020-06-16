@@ -21,7 +21,8 @@ class SearchField extends React.Component
         addTerm : PropTypes.func.isRequired,
         removeTerm : PropTypes.func.isRequired,
         clearTerms : PropTypes.func.isRequired,
-        resultsCount : PropTypes.number
+        resultsCount : PropTypes.number,
+        toggleTerm : PropTypes.func.isRequired
     }
 
     static defaultProps = {
@@ -35,7 +36,7 @@ class SearchField extends React.Component
     renderChosenTerms = () => {
 
         return this.props.chosenTerms.map(term => {
-            return (<TermPill key={`term-pill_${term.term_id}`} term={term} removeTerm={this.props.removeTerm} />);
+            return (<TermPill key={`term-pill_${term.term_id}`} term={term} removeTerm={this.props.removeTerm} toggleTerm={this.props.toggleTerm} />);
         });
     }
 

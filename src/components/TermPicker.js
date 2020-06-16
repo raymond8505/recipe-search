@@ -55,7 +55,7 @@ class TermPicker extends React.Component
         return this.props.taxonomy.terms.map(term => {
             return this.state.filter === '' || term.name.toLowerCase().indexOf(this.state.filter.toLocaleLowerCase()) > -1 ? (<li 
                         key={`term_${term.term_id}`}
-                        className={`TermPicker__term${this.termIsChosen(term) ? ' TermPicker__term--selected' : ''}`}>
+                        className={`TermPicker__term${this.termIsChosen(term) ? ' TermPicker__term--selected' : ''}${term.excluded ? ' TermPicker__term--excluded' : ''}`}>
                 <button 
                     type="button" 
                     onClick={(e) => {
