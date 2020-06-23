@@ -4,7 +4,7 @@ import Filters from './Filters';
 import SearchField from './SearchField';
 import { objectToFormData } from 'object-to-formdata';
 import Loader from './Loader';
-import {getTermById} from '../helpers';
+import {getTermById,makeUserTextTerm} from '../helpers';
 
 class App extends React.Component
 {
@@ -308,13 +308,7 @@ class App extends React.Component
 
   makeUserTextTerm = (text) =>
   {
-    let term = {
-      taxonomy : 'user-text',
-      name : `“${text}”`,
-      term_id : text
-    };
-
-    return term;
+    return makeUserTextTerm(text);
   }
 
   termIsChosen = (term) => {

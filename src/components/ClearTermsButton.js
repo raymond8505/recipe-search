@@ -72,7 +72,7 @@ class ClearTermsButton extends React.Component
 
     componentDidMount()
     {
-        console.log('mount');
+        //console.log('mount');
         window.addEventListener('mouseup',this.onWindowClick);
     }
 

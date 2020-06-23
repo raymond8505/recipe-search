@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import TermPill from './TermPill';
 import ClearTermsButton from './ClearTermsButton';
 import ShareModal from './ShareModal';
+import SearchAutoComplete from './SearchAutoComplete';
 
 class SearchField extends React.Component
 {
@@ -66,6 +67,11 @@ class SearchField extends React.Component
         return count === 0 ? null : (<div className="SearchField__results-label"><span className="SearchField__results-count">{count}</span> recipe{s} found</div>);
     }
 
+    onTermChosen = (term) => {
+
+        this.props.addTerm(term);
+    }
+
     render()
     {
         //console.log(this.props.chosenTerms);
@@ -84,8 +90,14 @@ class SearchField extends React.Component
             </button>
             <ul className="SearchField__chosen-terms">
                 {this.renderChosenTerms()}
+                
                 <li className="SearchField__user-text">
-                    <input type="text" ref={this.userInput} placeholder="Enter Search" onKeyUp={this.handleKeyUp} />
+                    {/* <input type="text" ref={this.userInput} placeholder="Enter Search" onKeyUp={this.handleKeyUp} /> */}
+                    <SearchAutoComplete
+                        allTerms={this.props.allTerms}
+                        chosenTerms={this.props.chosenTerms}
+                        onTermChosen={this.onTermChosen}
+                    />
                 </li>
             </ul>
             
