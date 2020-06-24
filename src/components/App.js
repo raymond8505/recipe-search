@@ -4,7 +4,7 @@ import Filters from './Filters';
 import SearchField from './SearchField';
 import { objectToFormData } from 'object-to-formdata';
 import Loader from './Loader';
-import {getTermById,makeUserTextTerm} from '../helpers';
+import {getTermById,makeUserTextTerm,searchTerms} from '../helpers';
 
 class App extends React.Component
 {
@@ -53,7 +53,17 @@ class App extends React.Component
           {
             if(val.length > 0)
             {
-              chosenTerms.push(this.makeUserTextTerm(val));
+              let exactTermMatches = searchTerms(val,allTerms,false);
+
+              //if the search param exact, no case matches at least one term, add the first result
+              if(exactTermMatches.length > 0)
+              {
+                chosenTerms.push(exactTermMatches[0]);
+              }
+              else
+              {
+                chosenTerms.push(this.makeUserTextTerm(val));
+              }
             }
           }
           else
@@ -61,7 +71,22 @@ class App extends React.Component
             let urlVals = val.split(',');
 
             urlVals.forEach(keyVal => {
-              chosenTerms.push(getTermById(keyVal,allTerms));
+
+              let term = getTermById(keyVal,this.state.terms)
+
+              if(term)
+              {
+                if(Number(keyVal) < 0)
+                {
+                  term.excluded = true;
+
+                  this.excludeTerm(term);
+                }
+
+                chosenTerms.push(term);
+              }
+
+              
             })
           }
         });
@@ -71,7 +96,6 @@ class App extends React.Component
         _this.setState({chosenTerms},() => {
             if(this.state.chosenTerms.length > 0)
             {
-              
               this.updateResults();
             }
         });
@@ -238,7 +262,7 @@ class App extends React.Component
 
     let toSend = this.compressTerms(termsToSend);
 
-    console.log(toSend);
+    //console.log(toSend);
 
     this.setState({resultsLoading : true},function(){
       this.searchRecipes(toSend,this.handleSearchResults);

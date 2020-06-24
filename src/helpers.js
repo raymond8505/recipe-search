@@ -41,6 +41,10 @@ export function getTermById(id,termsObj)
     let toRet = undefined;
     id = Number(id);
 
+    let absId = Math.abs(id);
+
+    console.log(id,absId,termsObj);
+
     Object.keys(termsObj).forEach(slug => {
 
         if(toRet !== undefined) return;
@@ -49,7 +53,7 @@ export function getTermById(id,termsObj)
 
         let term = terms.find(objTerm => {
             
-            return objTerm.term_id === id;
+            return Number(objTerm.term_id) === absId;
         });
 
         if(term !== undefined)

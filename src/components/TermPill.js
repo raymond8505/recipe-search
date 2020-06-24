@@ -28,7 +28,7 @@ class TermPill extends React.Component
 
     render()
     {
-        console.log(this.props.term);
+        //console.log(this.props.term);
         return (<li className={`TermPill TermPill--${this.props.term.taxonomy}${this.props.term.excluded ? ' TermPill--excluded' : ''}`} onClick={this.handlePillClick}>
             {this.props.term.name}
             <button type="button" ref={this.closeBtn} className="TermPill__close-btn" onClick={this.onCloseClick}>&times;</button>

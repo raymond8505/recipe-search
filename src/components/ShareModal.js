@@ -57,8 +57,10 @@ class ShareModal extends React.Component
                 {
                     preppedTermsObj[ct.taxonomy] = []; 
                 }
+                
+                let excludeMod = ct.excluded ? -1 : 1;
 
-                preppedTermsObj[ct.taxonomy].push(ct.term_id);
+                preppedTermsObj[ct.taxonomy].push(ct.term_id * excludeMod);
             }
         });
 

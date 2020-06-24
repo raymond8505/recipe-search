@@ -1442,7 +1442,8 @@ dialog {
   padding-right: 0;
   border-radius: 6px;
   font-size: .85em;
-  font-weight: 600; }
+  font-weight: 600;
+  cursor: pointer; }
   .TermPill:not(:last-child) {
     margin-right: .4em; }
 
