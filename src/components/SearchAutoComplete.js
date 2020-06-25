@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {searchTerms} from '../helpers';
+import {searchTerms,elementIsIn} from '../helpers';
 
 class SearchAutoComplete extends React.Component
 {
@@ -21,15 +21,22 @@ class SearchAutoComplete extends React.Component
     }
 
     input = React.createRef();
+    suggestions = React.createRef();
 
     onInputKeyUp = (e) => {
         
         let field = e.target;
         let q = field.value;
+
+        console.log(e.which);
             
         if(e.which === 13) // enter
         {
             this.props.onTermChosen(q);
+            this.clearMatches();
+        }
+        else if(e.which === 27) // ESC
+        {
             this.clearMatches();
         }
         else
@@ -51,15 +58,36 @@ class SearchAutoComplete extends React.Component
         }
         
     }
+    
 
-    clearMatches = () => {
+    componentDidMount()
+    {
+        window.addEventListener('click',this.onWindowClick);
+    }
+
+    componentWillUnmount()
+    {
+        window.removeEventListener('click',this.onWindowClick);
+    }
+
+    onWindowClick = (e) => {
+        
+        if(!elementIsIn(e.target,this.suggestions.current))
+        {
+            this.clearMatches(false,false);
+        }
+    }
+
+    clearMatches = (focusSearch = true,clearInput = true) => {
         this.setState({
             matches : []
         });
 
-
-        this.input.current.value = '';
-        this.input.current.focus();
+        if(clearInput)
+            this.input.current.value = '';
+        
+        if(focusSearch)
+            this.input.current.focus();
     }
 
     onMatchClick = (e,match) => {
@@ -76,7 +104,7 @@ class SearchAutoComplete extends React.Component
         let matches = this.state.matches;
 
         return (
-            <ul className="SearchAutoComplete__Suggestions">
+            <ul className="SearchAutoComplete__Suggestions" ref={this.suggestions}>
                 {
                     matches.map(match => {
                         return (<li key={`match_${match.term_id}`} className={`SearchAutoComplete__Suggestion SearchAutoComplete__Suggestion--${match.taxonomy}`}>

@@ -1509,7 +1509,8 @@ dialog {
   padding: 0;
   margin: 0;
   display: block;
-  background: #eee; }
+  background: #eee;
+  position: relative; }
   .Result > a {
     position: relative;
     width: 100%;
@@ -1549,11 +1550,58 @@ dialog {
   margin: 0;
   text-align: center; }
 
-.Result:hover .Result__thumb {
+.Result:hover {
+  z-index: 999; }
+
+.Result a:hover .Result__thumb {
   opacity: .1; }
 
-.Result:hover .Result__info {
+.Result a:hover .Result__info {
   opacity: 1; }
+
+.Result__info-button {
+  background: transparent;
+  border: none;
+  font-size: 1em;
+  border-radius: 0;
+  text-align: left;
+  color: inherit;
+  font-weight: inherit;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  color: #BF0404;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 2; }
+
+.Result__meta-info {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  color: #111;
+  background: #eee;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease-in-out 0s;
+  padding: 1em; }
+  .Result__meta-info dl {
+    font-size: .95em; }
+    .Result__meta-info dl > * {
+      float: left;
+      margin-bottom: .2em; }
+    .Result__meta-info dl dt {
+      clear: left;
+      min-width: 21ch; }
+
+.Result__info-button:hover + .Result__meta-info {
+  opacity: 1;
+  pointer-events: all; }
 
 .Loader {
   width: 100%;
@@ -1714,14 +1762,13 @@ dialog {
   padding: .2em 0;
   margin: 0;
   display: block;
-  z-index: 99; }
+  z-index: 1000; }
 
 .SearchAutoComplete__Suggestion-btn {
   background: transparent;
   border: none;
   font-size: 1em;
   border-radius: 0;
-  width: 100%;
   text-align: left;
   color: inherit;
   font-weight: inherit;
@@ -1729,6 +1776,7 @@ dialog {
   outline: none;
   padding: 0;
   margin: 0;
+  width: 100%;
   transition: all 0.2s ease-in-out 0s;
   padding: .2em 1em;
   cursor: pointer; }

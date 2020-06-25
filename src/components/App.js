@@ -165,6 +165,7 @@ class App extends React.Component
     }).then(resp => {
       
       resp.json().then(json => {
+        
         callback(json);
       });
 
@@ -279,7 +280,8 @@ class App extends React.Component
 
   handleSearchResults = (data) => {
 
-    data = JSON.parse(data);
+    if(typeof data === 'string')
+      data = JSON.parse(data);
 
     this.setState(
       {

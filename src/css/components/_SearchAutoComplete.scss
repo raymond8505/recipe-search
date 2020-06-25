@@ -38,11 +38,12 @@
     padding: .2em 0;
     margin: 0;
     display: block;
-    z-index: 99;
+    z-index: 1000;
 }
 .SearchAutoComplete__Suggestion-btn
 {
     @include plain-text-button;
+    width: 100%;
     @include animated;
     padding: .2em 1em;
     cursor : pointer;

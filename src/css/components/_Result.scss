@@ -4,7 +4,7 @@
     margin: 0;
     display: block;
     background: $background;
-    
+    position: relative;
     
     > a
     {
@@ -60,6 +60,11 @@
 
 .Result:hover
 {
+    z-index: 999;
+}
+
+.Result a:hover
+{
     .Result__thumb
     {
         opacity: .1;
@@ -68,4 +73,51 @@
     {
         opacity: 1;
     }
+}
+
+.Result__info-button
+{
+    @include plain-text-button;
+    color: $ingredient;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 2;
+}
+.Result__meta-info
+{
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    color: $body_color;
+    background: $background;
+    opacity: 0;
+    pointer-events: none;
+    @include animated;
+    padding: 1em;
+
+    dl
+    {
+        font-size: .95em;
+
+        > *
+        {
+            float: left;
+            margin-bottom: .2em;
+        }
+
+        dt
+        {
+            clear: left;
+            min-width: 21ch;
+        }
+    }
+}
+.Result__info-button:hover + .Result__meta-info
+{
+    opacity: 1;
+    pointer-events: all;
 }

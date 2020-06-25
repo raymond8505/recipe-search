@@ -24,6 +24,12 @@ export function objectToURLParams(obj)
     }).join('&');
 }
 
+/**
+ * traverses up the DOM to check if el is a decendant of parent
+ * @param {Element} el 
+ * @param {Element} parent 
+ * @returns {boolean}
+ */
 export function elementIsIn(el,parent)
 {
     if(el === document.body) return false;
@@ -34,6 +40,33 @@ export function elementIsIn(el,parent)
     }
 
     return true;
+}
+
+export function maybePlural(num,word)
+{
+    return num === 1 ? `${num} ${word}` : `${num} ${word}s`; 
+}
+/**
+ * takes some integer of minutes and returns a human friend time string
+ * @param {int} $raw_mins 
+ * @returns {String} a time string in the format h:mm
+ */
+export function minutesToTimeString($raw_mins)
+{
+    if($raw_mins < 60) return $raw_mins + ' mins';
+
+    let $hours = Math.floor($raw_mins / 60);
+
+    let $mins = $raw_mins % 60;
+
+    let $str = $hours + ' ' + maybePlural($hours,'hour');
+
+    if($mins != 0)  
+    {
+        $str += ', ' + $mins + ' ' + maybePlural($mins,'min');
+    }
+
+    return $str;
 }
 
 export function getTermById(id,termsObj)

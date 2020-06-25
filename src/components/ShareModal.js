@@ -26,6 +26,7 @@ class ShareModal extends React.Component
     static defaultProps = {
         open : false
     }
+    
     componentWillUpdate()
     {
         this.url = window.location.origin + '?' + this.prepTerms(this.props.chosenTerms);
