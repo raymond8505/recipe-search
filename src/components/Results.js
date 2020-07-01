@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Alert from './Alert';
 import Result from './Result';
 import Loader from './Loader';
+import SliderBar from './SliderBar';
 
 class Results extends React.Component
 {
@@ -47,6 +48,7 @@ class Results extends React.Component
         //console.log(this.props.posts);
 
         return (<div className={`Results${this.props.posts.length === 0 ? ' Results--no-posts' : ''}`}>
+            {this.props.posts.length ? <SliderBar /> : null}
             {
                 this.props.loading ? <Loader /> : this.renderResults()
             }

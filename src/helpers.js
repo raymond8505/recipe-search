@@ -61,7 +61,7 @@ export function minutesToTimeString($raw_mins)
 
     let $str = $hours + ' ' + maybePlural($hours,'hour');
 
-    if($mins != 0)  
+    if($mins !== 0)  
     {
         $str += ', ' + $mins + ' ' + maybePlural($mins,'min');
     }
