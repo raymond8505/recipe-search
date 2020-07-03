@@ -42,11 +42,12 @@
     @include plain-text-button;
     display: block;
     height: 75%;
-    width: 5px;
-    background: darken($background,30%);
+    width: 7px;
+    background: #fff;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.75);
 
     cursor: pointer;
     z-index: 4;
@@ -59,7 +60,7 @@
 
     &--max
     {
-        right: 0;
+        left: calc(100% - 5px);
     }
 }
 .Slider__toggle-btn

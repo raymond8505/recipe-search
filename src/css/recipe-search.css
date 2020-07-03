@@ -4,7 +4,7 @@
   buttons that look like regular text for interactive
   elements with very custom styles
 **/
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;600;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap");
 @import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 html {
   line-height: 1.15;
@@ -1788,15 +1788,16 @@ dialog {
   background-color: #eee;
   padding: .5em 0 .5em 1em;
   display: flex;
-  justify-content: space-around; }
+  justify-content: space-around;
+  position: sticky;
+  top: 0;
+  z-index: 9999; }
 
 .SliderBar .Slider {
   width: 25%;
   margin-right: 1em; }
   .SliderBar .Slider:not(:last-child) {
-    border-right: 1px solid #d5d5d5;
-    padding-right: .5em;
-    margin-right: .5em; }
+    margin-right: 2em; }
 
 .Slider {
   display: flex;
@@ -1845,17 +1846,18 @@ dialog {
   margin: 0;
   display: block;
   height: 75%;
-  width: 5px;
-  background: #a2a2a2;
+  width: 7px;
+  background: #fff;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.75);
   cursor: pointer;
   z-index: 4; }
   .Slider__slide-btn--min {
     left: 0; }
   .Slider__slide-btn--max {
-    right: 0; }
+    left: calc(100% - 5px); }
 
 .Slider__toggle-btn {
   background: transparent;

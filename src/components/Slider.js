@@ -9,19 +9,82 @@ class Slider extends React.Component
         this.state = {
             includeEmpty : true,
             min : this.props.min,
-            max : this.props.max
+            max : this.props.max,
+            minX : undefined,
+            maxX : undefined
         };
     }
 
     static propTypes = {
         min : PropTypes.number,
         max : PropTypes.number,
-        label : PropTypes.string.isRequired
+        valueFormatter : PropTypes.func,
+        label : PropTypes.string.isRequired,
     };
 
     static defaultProps = {
         min : 0,
         max : 100
+    }
+
+    xPos = 0;
+    currentBar;
+    slider = React.createRef();
+    minSlider = React.createRef();
+    maxSlider = React.createRef();
+
+    onMouseMove = (e) => {
+
+        if(this.currentBar)
+        {
+            let relativeX = this.calcRelativeX(e.clientX);
+            
+            if(this.currentBar === this.minSlider.current)
+            {
+                if(relativeX < this.state.maxX || this.state.maxX === undefined)
+                {
+                    this.setState({minX : relativeX});
+                }
+            }
+            else if(this.currentBar === this.maxSlider.current)
+            {
+                if(relativeX > this.state.minX)
+                {
+                    this.setState({maxX : relativeX});
+                }
+            }
+        }
+    }
+
+    calcRelativeX = (absX) => {
+        let relX = absX - this.slider.current.offsetLeft;
+
+        if(relX < 0)
+        {
+            return 0;
+        }
+        else if(relX > this.slider.current.offsetWidth)
+        {
+            return relX > this.slider.current.offsetWidth;
+        }
+        else
+        {
+            return relX;
+        }
+    }
+
+    calcPercentage = (x) => {
+        return x / this.slider.offsetWidth;
+    }
+
+    onSliderMouseDown = (e) => {
+        this.currentBar = e.target;
+    }
+
+    onSliderMouseUp = (e) => {
+
+        console.log('mouse up');
+        this.currentBar = undefined;
     }
 
     onToggleClick = (e) => {
@@ -32,19 +95,28 @@ class Slider extends React.Component
     render()
     {
         return (
-            <div className="Slider">
+            <div className="Slider"  onMouseMove={this.onMouseMove}>
                 <div className="Slider__slide-val Slider__slide-val--min">
-                    {this.state.min}
+                    {this.props.valueFormatter ? this.props.valueFormatter(this.state.min) : this.state.min}
                 </div>
-                <div className="Slider__slide">
+                <div className="Slider__slide" onMouseUp={this.onSliderMouseUp} ref={this.slider}>
                     <h4 className="Slider__label">
                         {this.props.label}
                     </h4>
-                    <button className="Slider__slide-btn Slider__slide-btn--min"></button>
-                    <button className="Slider__slide-btn Slider__slide-btn--max"></button>
+                    <button 
+                        className="Slider__slide-btn Slider__slide-btn--min"
+                        onMouseDown={this.onSliderMouseDown}
+                        style={{left : this.state.minX === undefined ? '' : this.state.minX}}
+                        ref={this.minSlider}
+                        ></button>
+                    <button 
+                        className="Slider__slide-btn Slider__slide-btn--max"
+                        onMouseDown={this.onSliderMouseDown}
+                        style={{left : this.state.maxX === undefined ? '' : this.state.maxX}}
+                        ref={this.maxSlider}></button>
                 </div>
                 <div className="Slider__slide-val Slider__slide-val--max">
-                    {this.state.max}
+                    {this.props.valueFormatter ? this.props.valueFormatter(this.state.max) : this.state.max}
                 </div>
                 <label className="Slider__toggle">
                     <button className="Slider__toggle-btn" 

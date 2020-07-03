@@ -4,6 +4,9 @@
     padding: .5em 0 .5em 1em;
     display: flex;
     justify-content: space-around;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
 }
 .SliderBar .Slider
 {
@@ -12,8 +15,7 @@
 
     &:not(:last-child)
     {
-        border-right: 1px solid darken($background,10%);
-        padding-right: .5em;
-        margin-right: .5em;
+        //border-right: 1px solid darken($background,10%);    
+        margin-right: 2em;
     }
 }

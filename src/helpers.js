@@ -51,7 +51,7 @@ export function maybePlural(num,word)
  * @param {int} $raw_mins 
  * @returns {String} a time string in the format h:mm
  */
-export function minutesToTimeString($raw_mins)
+export function minutesToTimeString($raw_mins,$format = '%H hours %M mins')
 {
     if($raw_mins < 60) return $raw_mins + ' mins';
 
@@ -59,12 +59,7 @@ export function minutesToTimeString($raw_mins)
 
     let $mins = $raw_mins % 60;
 
-    let $str = $hours + ' ' + maybePlural($hours,'hour');
-
-    if($mins !== 0)  
-    {
-        $str += ', ' + $mins + ' ' + maybePlural($mins,'min');
-    }
+    let $str = $format.replace(/%H/g,$hours).replace(/%M/g,$mins);
 
     return $str;
 }

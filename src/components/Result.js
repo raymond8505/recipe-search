@@ -30,14 +30,14 @@ class Result extends React.Component
     renderInfo = () => {
 
         return [
-            <button className="Result__info-button"><i class="fa fa-info-circle"></i></button>,
+            <button key="rib" className="Result__info-button"><i className="fa fa-info-circle"></i></button>,
             this.renderInfoToolTip()    
         ];
     }
 
     renderInfoToolTip = () => {
 
-        return (<div className="Result__meta-info">
+        return (<div className="Result__meta-info" key="gds">
             <h4 className="Result__meta-title">Details</h4>
 
             <dl>
@@ -59,23 +59,23 @@ class Result extends React.Component
         {
             case 'ingredients' :
                 return [
-                    <dt>Ingredients</dt>,
-                    <dd>{result.ingredients}</dd>
+                    <dt key="in_dt">Ingredients</dt>,
+                    <dd key="in_dd">{result.ingredients}</dd>
                 ];
             case 'calories' :
                 return [
-                    <dt>Calories Per Serving</dt>,
-                    <dd>{result.calories}</dd>
+                    <dt key="ca_dt">Calories Per Serving</dt>,
+                    <dd key="ca_dd">{result.calories}</dd>
                 ];
             case 'time' :
                 return [
-                    <dt>Time</dt>,
-                    <dd>{minutesToTimeString(result.time)}</dd>
+                    <dt key="ti_dt">Time</dt>,
+                    <dd key="ti_dd">{minutesToTimeString(result.time)}</dd>
                 ];
             case 'servings' :
                 return [
-                    <dt>Servings</dt>,
-                    <dd>{result.servings}</dd>
+                    <dt key="ti_dt">Servings</dt>,
+                    <dd key="ti_dd">{result.servings}</dd>
                 ]
         }
     }
