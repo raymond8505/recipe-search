@@ -1,8 +1,9 @@
 .Results
 {
     flex-grow: 1;
-    
-    overflow: auto;
+    flex-direction: column;
+    display: flex;
+    overflow: hidden;
     @include styled-scroll-bar;
 }
 .Results__posts
@@ -14,6 +15,8 @@
     grid-auto-rows: 25vh;
     gap: 1em;
     padding: 1em;
+    flex-grow: 1;
+    overflow-y: auto;
 }
 .Results--no-posts
 {

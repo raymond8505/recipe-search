@@ -36,7 +36,7 @@ class Slider extends React.Component
     onMouseMove = (e) => {
 
         if(this.currentBar)
-        {
+        {   
             let relativeX = this.calcRelativeX(e.clientX);
             
             if(this.currentBar === this.minSlider.current)
@@ -58,6 +58,8 @@ class Slider extends React.Component
 
     calcRelativeX = (absX) => {
         let relX = absX - this.slider.current.offsetLeft;
+
+        console.log(absX,relX);
 
         if(relX < 0)
         {
