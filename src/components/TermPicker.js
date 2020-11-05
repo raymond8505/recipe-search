@@ -48,24 +48,34 @@ class TermPicker extends React.Component
 
     renderTerms = () => {
 
-        if(this.props.taxonomy === undefined || this.props.taxonomy === undefined) return null;
+        if(this.props.taxonomy === undefined || this.props.taxonomy.terms === undefined) return null;
         
         //console.log(this.props);
 
-        return this.props.taxonomy.terms.map(term => {
-            return this.state.filter === '' || term.name.toLowerCase().indexOf(this.state.filter.toLocaleLowerCase()) > -1 ? (<li 
-                        key={`term_${term.term_id}`}
-                        className={`TermPicker__term${this.termIsChosen(term) ? ' TermPicker__term--selected' : ''}${term.excluded ? ' TermPicker__term--excluded' : ''}`}>
-                <button 
-                    type="button" 
-                    onClick={(e) => {
-                        this.handleClick(e,term);
-                    }}
-                    >
-                    {term.name}
-                </button>
-            </li>) : null;
-        });
+        try
+        {
+            return this.props.taxonomy.terms.map(term => {
+                return this.state.filter === '' || term.name.toLowerCase().indexOf(this.state.filter.toLocaleLowerCase()) > -1 ? (<li 
+                            key={`term_${term.term_id}`}
+                            className={`TermPicker__term${this.termIsChosen(term) ? ' TermPicker__term--selected' : ''}${term.excluded ? ' TermPicker__term--excluded' : ''}`}>
+                    <button 
+                        type="button" 
+                        onClick={(e) => {
+                            this.handleClick(e,term);
+                        }}
+                        >
+                        {term.name}
+                    </button>
+                </li>) : null;
+            });
+        }
+        catch(e)
+        {
+            //for some reason on remote, terms is an object? But inspector sees it as an array?
+            //I dunno, but also I'm high and wrapping it in this try/catch seems to fix things
+            //\shrug
+            console.log(this.props.taxonomy.terms,typeof this.props.taxonomy.terms);
+        }
     }
 
     render()

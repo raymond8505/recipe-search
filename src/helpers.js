@@ -139,3 +139,8 @@ export function makeUserTextTerm(text)
   
       return term;
 }
+
+export function isMobile()
+{
+    return document.body.offsetWidth <= 768;
+}

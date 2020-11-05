@@ -8,8 +8,67 @@
     overflow: auto;
     height: 100%;
     width: 20vw;
+    position: relative;
+    @include animated;
 }
 .Filters__title
 {
     color: rgba($body_color,.5);
+}
+.App--mobile .Filters
+{
+    width: 100%;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .Filters__title
+    {
+        width: 100%;
+    }
+
+    .TermPicker
+    {
+        width: calc(50% - 2em);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .TermPicker__terms
+    {
+        flex-grow: 1;
+    }
+}
+.Filters__mobile-open-close
+{
+    @include no-button-style;
+    position: absolute;
+    transform: translateY(-50%) rotate(90deg);
+    right: -.25em;
+    top: calc(50vh - 3rem);
+    opacity: .5;
+    font-size: 2em;
+
+    .Filters--closed &
+    {
+        right: -1vw;
+    }
+}
+.App--mobile .Filters--closed
+{
+    transform: translateX(-100%);
+    left: 1.5rem;
+}
+.App--mobile .Filters
+{
+    position: fixed;
+    z-index: 5;
+}
+.App:not(.App--mobile)
+{
+    .Filters__mobile-open-close
+    {
+        display: none;
+    }
 }

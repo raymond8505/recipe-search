@@ -1,6 +1,7 @@
 import React from 'react';
 import TermPicker from './TermPicker';
 import PropTypes from 'prop-types';
+import {isMobile} from '../helpers';
 
 //import ReactDOM from 'react-dom';
 
@@ -10,7 +11,9 @@ class Filters extends React.Component
     {
         super(props);
 
-        this.state = {};
+        this.state = {
+            open : true
+        };
     }
 
     static propTypes = {
@@ -37,13 +40,29 @@ class Filters extends React.Component
 
         return toRet;
     }
+    handleOpenClose = e => {
 
+        if(isMobile())
+        {
+            this.setState({
+                open : !this.state.open
+            });
+        }
+    }
     render()
     {
-        return (<div className="Filters">
+        return (<div 
+                className={`Filters ${this.state.open ? 'Filters--open' : 'Filters--closed'}`}
+                >
             <h2 className="Filters__title">
                 Filters
             </h2>
+
+            <button 
+                className="Filters__mobile-open-close fa fa-bars" 
+                onTouchEnd={this.handleOpenClose}>
+
+            </button>
             {this.renderTermPickers()}
         </div>);
     }

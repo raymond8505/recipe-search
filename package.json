@@ -1,12 +1,15 @@
 {
   "name": "recipe-search",
+  "homepage": "/recipe-search/build/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "ftp": "^0.3.10",
     "git": "^0.1.5",
+    "node-sass": "^4.14.1",
     "object-to-formdata": "^3.0.9",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -16,9 +19,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && node finish-build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy" : "node deploy.js"
   },
   "eslintConfig": {
     "extends": "react-app"

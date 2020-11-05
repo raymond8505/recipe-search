@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Alert from './Alert';
 import Result from './Result';
 import Loader from './Loader';
-import SliderBar from './SliderBar';
+//import SliderBar from './SliderBar';
 
 class Results extends React.Component
 {
@@ -92,7 +92,7 @@ class Results extends React.Component
 
             let thisVal = post[prop];
 
-            if(min === -1 || thisVal < min && thisVal !== -1 && thisVal !== 0)
+            if(min === -1 || (thisVal < min && thisVal !== -1 && thisVal !== 0))
             {
                 min = thisVal;
             }
@@ -115,13 +115,13 @@ class Results extends React.Component
         this.setMinMax('time');
 
         return (<div className={`Results${this.props.posts.length === 0 ? ' Results--no-posts' : ''}`}>
-            {this.props.posts.length ? <SliderBar 
+            {/* {this.props.posts.length ? <SliderBar 
                                             calories={this.calories}
                                             ingredients={this.ingredients}
                                             servings={this.servings}
                                             time={this.time}
                                             onSlidersChange={this.filterPosts}
-                                        /> : null}
+                                        /> : null} */}
             {
                 this.props.loading ? <Loader /> : this.renderResults()
             }

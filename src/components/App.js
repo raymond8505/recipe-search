@@ -4,7 +4,8 @@ import Filters from './Filters';
 import SearchField from './SearchField';
 import { objectToFormData } from 'object-to-formdata';
 import Loader from './Loader';
-import {getTermById,makeUserTextTerm,searchTerms} from '../helpers';
+import {getTermById,isMobile,makeUserTextTerm,searchTerms} from '../helpers';
+import '../css/recipe-search.scss';
 
 class App extends React.Component
 {
@@ -14,12 +15,14 @@ class App extends React.Component
 
     this.state = {
       apiLoaded : false,
-      apiBase : (window.location.host === 'raymonds.recipes' ? '/recipe-search.php' : 'http://localhost/food8164/recipe-search.php'),
+
+      apiBase : (window.location.host === 'raymonds.recipes' ? '/recipe-search.php' : 'http://localhost/raymondsfood/recipe-search.php'),
       terms : {},
       chosenTerms : [],
       results : [],
       resultsLoading : false,
-      resultsCount : 0
+      resultsCount : 0,
+      isMobile : isMobile()
     };
   }
 
@@ -28,10 +31,19 @@ class App extends React.Component
   {
     let _this = this;
 
+    const mobileBreak = window.matchMedia('(max-width: 650px)');
+          mobileBreak.addListener((x) => {
+            _this.setState({
+              isMobile : x.matches
+            });
+          })
+
 
     this.apiFetch('init',(resp => {
       
-      //console.log(resp);
+      Object.keys(resp).forEach(key=>{
+        resp[key].terms = Array.from(resp[key].terms);
+      });
 
       _this.setState({
         terms : resp,
@@ -373,7 +385,8 @@ class App extends React.Component
   {
     if(Object.keys(this.state.terms).length > 0)
     {
-      return (<div className="App App--Recipe-Search">
+      //console.log(window);
+      return (<div className={`App App--Recipe-Search${this.state.isMobile ? ' App--mobile' : ''}`}>
         <div className="App__header">
           <div className="App__title">
             <a href="/">Raymond's Food</a>

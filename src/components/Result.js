@@ -76,7 +76,8 @@ class Result extends React.Component
                 return [
                     <dt key="ti_dt">Servings</dt>,
                     <dd key="ti_dd">{result.servings}</dd>
-                ]
+                ];
+            default : return null;
         }
     }
 

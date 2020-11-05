@@ -107,12 +107,14 @@
         {
             float: left;
             margin-bottom: .2em;
+            display: inline-block;
         }
 
         dt
         {
             clear: left;
-            min-width: 21ch;
+            min-width: 10ch;
+            font-weight: bold;
         }
     }
 }
@@ -120,4 +122,20 @@
 {
     opacity: 1;
     pointer-events: all;
+}
+.App--mobile
+{
+    .Result
+    {
+        margin-bottom: 1rem
+    }
+
+    .Result__thumb,
+    .Result__info
+    {
+        display: block;
+        height: auto;
+        position: relative;
+        opacity: 1;
+    }
 }
