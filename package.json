@@ -9,7 +9,7 @@
     "@testing-library/user-event": "^7.2.1",
     "ftp": "^0.3.10",
     "git": "^0.1.5",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "object-to-formdata": "^3.0.9",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
